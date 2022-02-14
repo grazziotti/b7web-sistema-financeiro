@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import * as C from './App.styles'
 import { TableArea } from './components/TableArea'
 import { InfoArea } from './components/InfoArea'
+import { InputArea } from './components/InputArea'
 
 import { Item } from './types/Item'
 import { Category } from './types/Category'
@@ -42,6 +43,12 @@ const App = () => {
     setCurrentMonth(newMonth)
   }
 
+  const handleAddItem = (item: Item) => {
+    let newList = [...list]
+    newList.push(item)
+    setList(newList)
+  }
+
   return (
     <C.Container>
       <C.Header>
@@ -55,7 +62,7 @@ const App = () => {
           expense={expense}
         />
 
-        {/* Área de inserção */}
+        <InputArea onAdd={handleAddItem} />
 
         <TableArea list={filteredList} />
       </C.Body>
